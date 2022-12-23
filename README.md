@@ -1,4 +1,4 @@
-https://github.com/ernemmez/picpath/blob/master/public/pp_icon.svg
+<img src="https://github.com/ernemmez/picpath/blob/master/public/pp_icon.svg" />
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
-  reactStrictMode: true,
+  /*
+  env: {
+    customKey: "my-value",
+  },
+  basePath: '/docs', // ana dizin her zaman bu olur örn html çıktısı : src={"/about"} --> src="docs/about"
+  */
 };
 
 module.exports = nextConfig;

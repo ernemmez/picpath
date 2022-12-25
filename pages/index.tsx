@@ -1,9 +1,20 @@
 import Head from "next/head";
 import Image from 'next/image';
+import { useEffect } from "react";
 import Icon1 from "../public/pp_icon.svg";
 import Icon2 from "../public/pp_icon_alternative.svg";
 
 export default function Home() {
+
+  useEffect(() => {
+    testAuth()
+  }, [])
+
+  const testAuth = async () => {
+    //return await signinReq({ email: "ernemmez456@gmail.com", password: "bjkresul456" })
+    //return await signupReq({ email: "nneyok456sa@gmail.com", password: "bjkresul456" })
+  }
+
   return (
     <>
       <Head>

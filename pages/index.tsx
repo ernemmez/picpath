@@ -1,20 +1,14 @@
+import { Button } from "@material-tailwind/react";
+import Layout from "layout";
+import { signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from 'next/image';
-import { useEffect } from "react";
-import Icon1 from "../public/pp_icon.svg";
-import Icon2 from "../public/pp_icon_alternative.svg";
+import Icon1 from "../public/icons/pp_icon.svg";
+import Icon2 from "../public/icons/pp_icon_alternative.svg";
 
 export default function Home() {
-
-  useEffect(() => {
-    testAuth()
-  }, [])
-
-  const testAuth = async () => {
-    //return await signinReq({ email: "ernemmez456@gmail.com", password: "bjkresul456" })
-    //return await signupReq({ email: "nneyok456sa@gmail.com", password: "bjkresul456" })
-  }
-
+  const { data } = useSession();
+  console.log(data?.user);
   return (
     <>
       <Head>
@@ -23,27 +17,30 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/pp_icon.svg" />
       </Head>
-      <main>
-        <h1 className="text-5xl text-center mt-5 text-green-800 font-bold">Hello Pic Path!</h1>
-        <section className="w-1/2 m-auto flex justify-around items-center mt-10">
-          <Image
-            src={Icon1}
-            alt="PicPath"
-          // width={500} automatically provided
-          // height={500} automatically provided
-          // blurDataURL="data:..." automatically provided
-          // placeholder="blur" // Optional blur-up while loading
-          />
-          <Image
-            src={Icon2}
-            alt="PicPath"
-          // width={500} automatically provided
-          // height={500} automatically provided
-          // blurDataURL="data:..." automatically provided
-          // placeholder="blur" // Optional blur-up while loading
-          />
-        </section>
-      </main>
+      <Layout>
+        <main>
+          <h1 className="text-5xl text-center mt-5 text-green-800 font-bold">Hello Pic Path!</h1>
+          <section className="w-1/2 m-auto flex justify-around items-center mt-10">
+            <Image
+              src={Icon1}
+              alt="PicPath"
+            // width={500} automatically provided
+            // height={500} automatically provided
+            // blurDataURL="data:..." automatically provided
+            // placeholder="blur" // Optional blur-up while loading
+            />
+            <Image
+              src={Icon2}
+              alt="PicPath"
+            // width={500} automatically provided
+            // height={500} automatically provided
+            // blurDataURL="data:..." automatically provided
+            // placeholder="blur" // Optional blur-up while loading
+            />
+            <Button onClick={() => signOut()} variant="outlined">Sign out</Button>
+          </section>
+        </main>
+      </Layout>
     </>
   );
 }

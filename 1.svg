@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="2000" viewBox="0 0 2000 2000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #265a5c;
+      }
+
+      .cls-2 {
+        font-size: 3905.342px;
+        fill: #fff;
+        font-family: Coolvetica;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="54.719" y="54.719" width="1890.561" height="1890.561" rx="304" ry="304"/>
+  <text id="Pp." class="cls-2" transform="translate(200.77 1299.736) scale(0.354)">Pp.</text>
+</svg>

@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   doc,
   firestore,
+  getDoc,
   setDoc,
   signInWithEmailAndPassword,
 } from "services/firebase";
@@ -21,9 +22,16 @@ const addUser = async (credentials: ILoginCredential) => {
   }
 };
 
-const authenticate = (credentials: ISignupCredential) => {
+const authenticate = async (credentials: ISignupCredential) => {
   const { email, password } = credentials;
-  return signInWithEmailAndPassword(auth, email, password);
+  const coreUser = await signInWithEmailAndPassword(auth, email, password);
+  if (coreUser) {
+    const docRef = doc(firestore, "users", `${coreUser.user.uid}`);
+    const docSnap = await getDoc(docRef);
+    return docSnap.exists() ? docSnap.data() : false;
+  }
+
+  return false;
 };
 
 export { addUser, authenticate };

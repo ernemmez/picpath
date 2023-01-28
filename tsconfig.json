@@ -18,12 +18,12 @@
     "paths": {
       "components/*": ["components/*"],
       "services/*": ["lib/services/*"],
-      "types/*": ["lib/types/*"],
+      "types/*": ["types/*"],
       "public/*": ["public/*"],
-      "utils/*": ["lib/utils/*"],
+      "pages/*": ["pages/*"],
       "db/*": ["lib/db/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "types/**/*.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

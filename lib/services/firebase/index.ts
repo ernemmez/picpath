@@ -5,7 +5,14 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { collection, doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+} from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 //import serviceAccount from "./serviceAccountKey.json";
 
 if (!admin.apps.length) {
@@ -31,6 +38,7 @@ const firebaseConfig = {
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth();
 const firestore = getFirestore(app);
+const fbStorage = getStorage(app);
 
 export {
   auth,
@@ -40,4 +48,6 @@ export {
   collection,
   setDoc,
   doc,
+  fbStorage,
+  getDoc,
 };

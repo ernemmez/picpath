@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
+  important: true,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -16,7 +18,13 @@ module.exports = {
         "pp-title": "#41444B",
         "pp-skypale-green": "#F1F1F1",
       },
+      fontFamily: {
+        jost: ["Jost", "sans-serif"],
+      },
+      borderRadius: {
+        lg: "3px",
+      },
     },
   },
   plugins: [],
-};
+});

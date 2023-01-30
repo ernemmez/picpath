@@ -13,7 +13,7 @@ import { SignupSchema } from "../Schemas";
 
 interface ISignUnProps {
     error: boolean;
-    setError: (arg: boolean) => boolean;
+    setError: (arg: boolean) => any;
 }
 
 interface SignupResolver {

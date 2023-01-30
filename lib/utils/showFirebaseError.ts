@@ -6,7 +6,7 @@ const ppAuthMessages = {
   EMAIL_EXISTS: "Email already in use",
 };
 
-const setFirebaseMessages = (fbMessage: string | string[] | undefined) => {
+const setFirebaseMessages = (fbMessage: any) => {
   const message = fbMessage.match(/\((.*)\)/)[1];
 
   switch (message) {

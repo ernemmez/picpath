@@ -20,7 +20,7 @@ export const SignupSchema = yup.object().shape({
       "Your password must contain at least one number character"
     )
     .matches(
-      /^(?=.*[!@#\$%\^&\*])/,
+      /^(?=.*[!@#$%^&*])/,
       "Your password must contain at least one special case character"
     ),
   confirmPassword: yup

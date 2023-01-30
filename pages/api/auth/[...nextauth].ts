@@ -21,10 +21,7 @@ export default NextAuth({
         });
 
         // If no error and we have user data, return it
-        if (user) {
-          console.log("eren emmez", user);
-          return { id: user.uid, ...user };
-        }
+        if (user) return { id: user.uid, ...user };
         // Return null if user data could not be retrieved
         return null;
       },
@@ -32,21 +29,28 @@ export default NextAuth({
   ],
   pages: {
     signIn: "/auth?redirect=signin",
-    newUser: "/auth?redirect=signup",
     error: "/auth?redirect=error",
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn() {
-      return true;
+    async signIn({ user, account, profile, email, credentials }) {
+      if (user) {
+        return true;
+      } else {
+        // Return false to display a default error message
+        // Or you can return a URL to redirect to:
+        // return '/unauthorized'
+        return false;
+      }
     },
     async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;
     },
     async session({ session, user, token }) {
-      console.log("session", session);
-      console.log("user", user);
-      console.log("token", token);
       session.accessToken = token.accessToken;
       session.user = token.user;
       return session;

@@ -3,7 +3,9 @@ interface ILoginCredential {
   password: string;
 }
 
-interface ISignupCredential extends ILoginCredential {}
+interface ISignupCredential extends ILoginCredential {
+  username: string;
+}
 
 interface IAuthBanner {
   isLogin: boolean;

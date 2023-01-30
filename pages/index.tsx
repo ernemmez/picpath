@@ -2,9 +2,6 @@ import { Button } from "@material-tailwind/react";
 import Layout from "layout";
 import { signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-import Image from 'next/image';
-import Icon1 from "../public/icons/pp_icon.svg";
-import Icon2 from "../public/icons/pp_icon_alternative.svg";
 
 export default function Home() {
   const { data } = useSession();
@@ -19,24 +16,8 @@ export default function Home() {
       </Head>
       <Layout>
         <main>
-          <h1 className="text-5xl text-center mt-5 text-green-800 font-bold">Hello Pic Path!</h1>
+          <h1 className="text-5xl text-center mt-5 text-green-800 font-bold">Hello {data?.user.username}!</h1>
           <section className="w-1/2 m-auto flex justify-around items-center mt-10">
-            <Image
-              src={Icon1}
-              alt="PicPath"
-            // width={500} automatically provided
-            // height={500} automatically provided
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-            />
-            <Image
-              src={Icon2}
-              alt="PicPath"
-            // width={500} automatically provided
-            // height={500} automatically provided
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-            />
             <Button onClick={() => signOut()} variant="outlined">Sign out</Button>
           </section>
         </main>

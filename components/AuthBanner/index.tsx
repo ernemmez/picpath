@@ -1,7 +1,7 @@
 import { Button } from "@material-tailwind/react";
 import classNames from "classnames";
-import bgImageDown from "public/auth-banner-down.png";
-import bgImageUp from "public/auth-banner-up.png";
+import bgImageDown from "public/auth-banner-down.webp";
+import bgImageUp from "public/auth-banner-up.webp";
 import { FC } from "react";
 import { IAuthBanner } from "types";
 

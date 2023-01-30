@@ -2,7 +2,7 @@ import "next-auth";
 
 declare module "next-auth" {
   export interface Session {
-    user: unknown;
+    user: any;
     accessToken: unknown;
   }
 }

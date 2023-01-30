@@ -8,7 +8,9 @@ export interface GlobalApiResponse<T> {
   data?: T;
 }
 
-export const NextAPI = axios.create({ baseURL: "http://localhost:3000/api/" });
+export const NextAPI = axios.create({
+  baseURL: "https://picpath-demo.vercel.app/api",
+});
 
 export const signinReq = async (credentials: ILoginCredential) => {
   const result = await NextAPI.post("auth/signin", credentials);

@@ -1,7 +1,17 @@
 import * as yup from "yup";
 
 export const SignupSchema = yup.object().shape({
-  username: yup.string().required("Please enter a username"),
+  username: yup
+    .string()
+    .required("Please enter a username")
+    .test(
+      "usernameAvaibility",
+      "This username has already been taken",
+      function (username) {
+        const isAvailable = true;
+        return isAvailable
+      }
+    ),
   email: yup.string().email().required("Please enter your email"),
   password: yup
     .string()

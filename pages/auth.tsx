@@ -2,6 +2,7 @@ import { AuthBanner } from "components/AuthBanner";
 import SigninForm from "components/form/signin-form";
 import SignupForm from "components/form/signup";
 import Layout from "layout";
+import useIsMobile from "lib/hooks/isMobile";
 import { showToast } from "lib/utils/alertHandler";
 import { setFirebaseMessages } from "lib/utils/showFirebaseError";
 import { getSession } from "next-auth/react";
@@ -9,7 +10,6 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from 'next/link';
 import { useRouter } from "next/router";
-import Logo from "public/icons/pp_icon.svg";
 import { useEffect, useState } from "react";
 
 export default function Auth() {
@@ -30,6 +30,7 @@ export default function Auth() {
             }
         }
     }, [query]);
+    const isMobile = useIsMobile();
 
     return (
         <>
@@ -37,32 +38,80 @@ export default function Auth() {
                 <title>PicPath | Welcome</title>
             </Head>
             <Layout>
-                <main className="flex h-screen w-full justify-center items-center">
-                    {isLoginPage ? (
-                        <>
-                            <AuthBanner isLogin={isLoginPage} setIsLogin={setIsLoginPage} />
-                            <div className="w-1/2 flex items-center justify-center m-auto">
-                                <SigninForm error={error} setError={setError} />
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <div className="w-1/2 flex items-center justify-center m-auto">
-                                <SignupForm error={error} setError={setError} />
-                            </div>
-                            <AuthBanner isLogin={isLoginPage} setIsLogin={setIsLoginPage} />
-                        </>
+                {isMobile ?
+                    (
+                        <main className="w-full h-full">
+                            {isLoginPage ?
+                                <>
+                                    <AuthBanner isLogin={isLoginPage} setIsLogin={setIsLoginPage} />
+                                    <div className="mt-24 flex flex-col items-center justify-start m-auto">
+                                        <SigninForm error={error} setError={setError} />
+                                        <span className="mt-12">
+                                            Don’t have an account?&nbsp;
+                                            <span className="text-pp-link underline">
+                                                <Link href="/auth?redirect=signup">Sign up</Link>
+                                            </span>
+                                            &nbsp;for free!
+                                        </span>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <AuthBanner isLogin={isLoginPage} setIsLogin={setIsLoginPage} />
+                                    <div className="mt-24 flex flex-col items-center justify-start m-auto">
+                                        <SignupForm error={error} setError={setError} />
+                                        {isLoginPage ?
+                                            <span className="mt-12">
+                                                Don’t have an account?&nbsp;
+                                                <span className="text-pp-link underline">
+                                                    <Link href="/auth?redirect=signup">Sign up</Link>
+                                                </span>
+                                                &nbsp;for free!
+                                            </span>
+                                            :
+                                            <span className="mt-12">
+                                                Do you have an account?&nbsp;
+                                                <span className="text-pp-link underline">
+                                                    <Link href="/auth?redirect=signin">Sign in</Link>
+                                                </span>
+                                                &nbsp;now!
+                                            </span>
+                                        }
+                                    </div>
+                                </>
+                            }
+                            <div className="w-full h-[220px] absolute bottom-0 z-[-2]" style={{ background: "linear-gradient(180deg, rgba(9,118,111,0.6432948179271709) 0%, rgba(9,98,118,0.4192051820728291) 33%, rgba(9,98,118,0.23713235294117652) 59%, rgba(9,98,118,0) 100%)", transform: "rotate(180deg)" }}></div>
+                        </main>
+                    )
+                    :
+                    (
+                        <main className="flex h-screen w-full justify-center items-center">
+                            {isLoginPage ? (
+                                <>
+                                    <AuthBanner isLogin={isLoginPage} setIsLogin={setIsLoginPage} />
+                                    <div className="w-1/2 flex items-center justify-center m-auto">
+                                        <SigninForm error={error} setError={setError} />
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="w-1/2 flex items-center justify-center m-auto">
+                                        <SignupForm error={error} setError={setError} />
+                                    </div>
+                                    <AuthBanner isLogin={isLoginPage} setIsLogin={setIsLoginPage} />
+                                </>
+                            )}
+                            <Link href="/">
+                                <Image
+                                    src="/icons/pp_icon.svg"
+                                    alt="PicPath"
+                                    width={44}
+                                    height={44}
+                                    className="absolute top-5 left-7"
+                                />
+                            </Link>
+                        </main>
                     )}
-                    <Link href="/">
-                        <Image
-                            src={Logo}
-                            alt="PicPath"
-                            width={40}
-                            height={40}
-                            className="absolute top-5 left-7"
-                        />
-                    </Link>
-                </main>
             </Layout>
         </>
     );

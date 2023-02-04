@@ -1,12 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import classNames from "classnames";
 import { Button } from "components/Button";
 import { Input } from "components/form/form-components";
 import { showToast } from "lib/utils/alertHandler";
 import { setFirebaseMessages } from "lib/utils/showFirebaseError";
 import { signIn } from "next-auth/react";
-import Image from "next/image";
+import EmailIcon from "public/icons/email-icon.svg";
 import GoogleOutlineIcon from "public/icons/google_outline.svg";
+import HidePasswordIcon from "public/icons/hide.svg";
+import UserIcon from "public/icons/person.svg";
+import ShowPasswordIcon from "public/icons/show.svg";
+import { useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { NextAPI } from "services/rest";
 import { SignupSchema } from "../Schemas";
@@ -32,6 +35,7 @@ const SignupForm = (props: ISignUnProps) => {
     });
     const { formState } = methods;
     const { errors } = formState;
+    const [showPassword, setShowPassword] = useState<boolean>(false);
 
 
     const autoSignin = async (data: any) => {
@@ -53,12 +57,11 @@ const SignupForm = (props: ISignUnProps) => {
 
 
     return (
-        <div className="h-fit m-auto w-7/12 flex flex-col justify-center items-center">
-            <h2 className="text-4xl font-medium text-center">Create Account</h2>
-            <span className={classNames('my-6 letter-spacing: -0.025em leading-[18px]', { 'text-pp-danger': error })}>{error ? 'Please enter a valid value in all fields' : 'Welcome back to PicPath...'}</span>
+        <div className="h-fit m-auto lg:w-7/12 w-full flex flex-col justify-center items-center">
+            <h2 className="text-4xl font-medium lg:text-center lg:self-auto self-start lg:ml-0 ml-4 mb-2">Create Account</h2>
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full flex flex-col justify-center items-center" method="POST">
-                    <div className="w-9/12 m-auto">
+                    <div className="lg:w-9/12 w-11/12 m-auto mt-4">
                         <Controller
                             name="username"
                             render={(props) => (
@@ -67,6 +70,7 @@ const SignupForm = (props: ISignUnProps) => {
                                     variant="outlined"
                                     label="Username"
                                     className="w-full"
+                                    icon={<UserIcon />}
                                     error={errors?.username?.message ? true : false}
                                     {...props.field}
                                 />
@@ -74,7 +78,7 @@ const SignupForm = (props: ISignUnProps) => {
                         />
                         {errors?.username?.message && <span className="text-pp-danger text-xs ml-1">{errors?.username?.message}</span>}
                     </div>
-                    <div className="w-9/12 m-auto mt-4">
+                    <div className="lg:w-9/12 w-11/12 m-auto mt-6">
                         <Controller
                             name="email"
                             render={(props) => (
@@ -83,6 +87,7 @@ const SignupForm = (props: ISignUnProps) => {
                                     variant="outlined"
                                     label="Email"
                                     className="w-full"
+                                    icon={<EmailIcon />}
                                     error={errors?.email?.message ? true : false}
                                     {...props.field}
                                 />
@@ -90,39 +95,41 @@ const SignupForm = (props: ISignUnProps) => {
                         />
                         {errors?.email?.message && <span className="text-pp-danger text-xs ml-1">{errors?.email?.message}</span>}
                     </div>
-                    <div className="w-9/12 m-auto mt-4">
+                    <div className="lg:w-9/12 w-11/12 m-auto mt-6">
                         <Controller
                             name="password"
                             render={(props) => (
                                 <Input
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     variant="outlined"
                                     label="Password"
                                     className="w-full"
                                     error={errors?.password?.message ? true : false}
+                                    icon={!showPassword ? <ShowPasswordIcon onClick={() => setShowPassword(true)} /> : <HidePasswordIcon onClick={() => setShowPassword(false)} />}
                                     {...props.field}
                                 />
                             )}
                         />
                         {errors?.password?.message && <span className="text-pp-danger text-xs ml-1">{errors?.password?.message}</span>}
                     </div>
-                    <div className="w-9/12 m-auto mt-4">
+                    <div className="lg:w-9/12 w-11/12 m-auto mt-6">
                         <Controller
                             name="confirmPassword"
                             render={(props) => (
                                 <Input
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     variant="outlined"
                                     label="Re-Password"
                                     className="w-full"
                                     error={errors?.confirmPassword?.message ? true : false}
+                                    icon={!showPassword ? <ShowPasswordIcon onClick={() => setShowPassword(true)} /> : <HidePasswordIcon onClick={() => setShowPassword(false)} />}
                                     {...props.field}
                                 />
                             )}
                         />
                         {errors?.confirmPassword?.message && <span className="text-pp-danger text-xs ml-1">{errors?.confirmPassword?.message}</span>}
                     </div>
-                    <div className="w-9/12 m-auto mt-4">
+                    <div className="lg:w-9/12 w-11/12 m-auto mt-6">
                         <Button
                             type="submit"
                             variant="filled"
@@ -135,12 +142,7 @@ const SignupForm = (props: ISignUnProps) => {
                             variant="outlined"
                             className="w-full h-[39px] shadow-0 hover:shadow-0 mt-3 flex justify-center items-center border border-pp-secondary-green outline-none focus:outline-none"
                         >
-                            <Image
-                                src={GoogleOutlineIcon}
-                                alt="PicPath"
-                                width={25}
-                                height={25}
-                            />
+                            <GoogleOutlineIcon />
                         </Button>
                     </div>
                 </form>

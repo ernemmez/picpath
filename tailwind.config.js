@@ -17,6 +17,7 @@ module.exports = withMT({
         "pp-text": "#52575D",
         "pp-title": "#41444B",
         "pp-skypale-green": "#F1F1F1",
+        "pp-link": "#00929B",
       },
       fontFamily: {
         jost: ["Jost", "sans-serif"],

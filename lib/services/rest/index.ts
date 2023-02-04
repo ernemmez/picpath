@@ -9,7 +9,7 @@ export interface GlobalApiResponse<T> {
 }
 
 export const NextAPI = axios.create({
-  baseURL: "https://picpath-eewjg3yej-ernemmez.vercel.app/api",
+  baseURL: "https://picpath.vercel.app/api",
 });
 
 export const signinReq = async (credentials: ILoginCredential) => {

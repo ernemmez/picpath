@@ -58,7 +58,7 @@ const SignupForm = (props: ISignUnProps) => {
 
     return (
         <div className="h-fit m-auto lg:w-7/12 w-full flex flex-col justify-center items-center">
-            <h2 className="text-4xl font-medium lg:text-center lg:self-auto self-start lg:ml-0 ml-4 mb-2">Create Account</h2>
+            <h2 className="text-4xl font-medium lg:text-center lg:self-auto self-start lg:ml-0 ml-4 mb-2">Create Account {process.env.NEXT_PUBLIC_NextAPI_BASE_URL}</h2>
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full flex flex-col justify-center items-center" method="POST">
                     <div className="lg:w-9/12 w-11/12 m-auto mt-4">

@@ -1,15 +1,18 @@
+import "../styles/globals.css";
+
+import { UserDeviceProvider } from "context/UserDeviceContext";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import { UserAgent } from "next-useragent";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import "../styles/globals.css";
 
 // Use of the <SessionProvider> is mandatory to allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
-}: AppProps<{ session: Session }>) {
+}: AppProps<{ ua: UserAgent; session: Session }>) {
   return (
     <SessionProvider session={session}>
       <Head>
@@ -26,7 +29,9 @@ export default function App({
         <meta name="author" content="Eren Emmez" />
         <link rel="icon" href="icons/pp_icon.svg" />
       </Head>
-      <Component {...pageProps} />
+      <UserDeviceProvider value={pageProps.ua}>
+        <Component {...pageProps} />
+      </UserDeviceProvider>
     </SessionProvider>
-  )
+  );
 }

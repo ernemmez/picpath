@@ -5,7 +5,6 @@ import Layout from "layout";
 import useIsMobile from "lib/hooks/isMobile";
 import { showToast } from "lib/utils/alertHandler";
 import { setFirebaseMessages } from "lib/utils/showFirebaseError";
-import { getSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from 'next/link';
@@ -115,21 +114,4 @@ export default function Auth() {
             </Layout>
         </>
     );
-}
-
-export async function getServerSideProps(context: any) {
-    const session = await getSession(context)
-
-    if (session) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
-
-    return {
-        props: {}
-    }
 }

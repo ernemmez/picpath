@@ -10,7 +10,7 @@ interface ISignupCredential extends ILoginCredential {
 interface IAuthBanner {
   isLogin: boolean;
   setIsLogin: Function;
-  isMobile: boolean;
+  isMobile?: boolean;
 }
 
 interface ImaskStyleState {

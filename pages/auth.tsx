@@ -8,7 +8,9 @@ import Layout from "layout";
 import { showToast } from "lib/utils/alertHandler";
 import { setFirebaseMessages } from "lib/utils/showFirebaseError";
 import { getSession } from "next-auth/react";
+import { useUserAgent } from "next-useragent";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -102,7 +104,40 @@ export default function Auth() {
             ></div>
           </main>
         ) : (
-          <div>asd</div>
+          <main className="flex h-screen w-full justify-center items-center">
+            {isLoginPage ? (
+              <>
+                <AuthBanner
+                  isLogin={isLoginPage}
+                  setIsLogin={setIsLoginPage}
+                  isMobile={isMobile}
+                />
+                <div className="w-1/2 flex items-center justify-center m-auto">
+                  <SigninForm error={error} setError={setError} />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="w-1/2 flex items-center justify-center m-auto">
+                  <SignupForm error={error} setError={setError} />
+                </div>
+                <AuthBanner
+                  isLogin={isLoginPage}
+                  setIsLogin={setIsLoginPage}
+                  isMobile={isMobile}
+                />
+              </>
+            )}
+            <Link href="/">
+              <Image
+                src="/icons/pp_icon.svg"
+                alt="PicPath"
+                width={44}
+                height={44}
+                className="absolute top-5 left-7"
+              />
+            </Link>
+          </main>
         )}
       </Layout>
     </>
@@ -121,6 +156,9 @@ export async function getServerSideProps(context: any) {
     };
   }
   return {
-    props: {},
+    props: {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      ua: useUserAgent(context.req.headers["user-agent"]),
+    },
   };
 }

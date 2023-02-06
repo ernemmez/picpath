@@ -7,7 +7,6 @@ import { useUserDevice } from "context/UserDeviceContext";
 import Layout from "layout";
 import { showToast } from "lib/utils/alertHandler";
 import { setFirebaseMessages } from "lib/utils/showFirebaseError";
-import { getSession } from "next-auth/react";
 import { useUserAgent } from "next-useragent";
 import Head from "next/head";
 import Image from "next/image";
@@ -145,16 +144,6 @@ export default function Auth() {
 }
 
 export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-
-  if (session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
   return {
     props: {
       // eslint-disable-next-line react-hooks/rules-of-hooks

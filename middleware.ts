@@ -3,7 +3,6 @@ export { default } from "next-auth/middleware";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   if (path.startsWith("/login") || path.startsWith("/signin")) {
@@ -15,7 +14,6 @@ export function middleware(request: NextRequest) {
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: [
     "/login/:path*",

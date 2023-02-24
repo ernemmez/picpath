@@ -14,12 +14,12 @@ export const NextAPI = axios.create({
 
 export const signinReq = async (credentials: ILoginCredential) => {
   const result = await NextAPI.post("auth/signin", credentials);
-  console.log(result);
+
   return result;
 };
 
 export const signupReq = async (credentials: ISignupCredential) => {
   const result = await NextAPI.post("auth/signup", credentials);
-  console.log(result);
+
   return result;
 };

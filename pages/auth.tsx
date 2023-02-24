@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 
 export default function Auth() {
   const { query } = useRouter();
+  const { isMobile } = useUserDevice();
   const [isLoginPage, setIsLoginPage] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -35,9 +36,7 @@ export default function Auth() {
       }
     }
   }, [query]);
-  //const isMobile = useIsMobile();
-  const { isMobile } = useUserDevice();
-  console.log(isMobile);
+
   return (
     <>
       <Head>

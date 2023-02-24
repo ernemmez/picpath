@@ -7,12 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Layout({ children }: { children: React.ReactNode }) {
     const router = useRouter()
     const session = useSession();
-    console.log(session)
 
     useEffect(() => {
         if (router.route === '/auth' && session.data != null || undefined) {
             router.push('/');
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [router.route, session.data])
 
     return (

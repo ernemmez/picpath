@@ -5,7 +5,7 @@ import Head from "next/head";
 
 export default function Home() {
   const { data } = useSession();
-  console.log(data?.user);
+
   return (
     <>
       <Head>

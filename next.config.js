@@ -7,8 +7,7 @@ const nextConfig = {
     customKey: "my-value",
   },
   basePath: '/docs', // ana dizin her zaman bu olur örn html çıktısı : src={"/about"} --> src="docs/about"
-  */
-  async redirects() {
+   async redirects() {
     return [
       {
         source: "/auth/signin",
@@ -17,6 +16,7 @@ const nextConfig = {
       },
     ];
   },
+  */
 
   webpack(config, { defaultLoaders }) {
     const resolvedBaseUrl = path.resolve(config.context, "../../");

@@ -9,16 +9,19 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   getFirestore,
   setDoc,
 } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-//import serviceAccount from "./serviceAccountKey.json";
+import serviceAccount from "./serviceAccountKey.json";
 
 if (!admin.apps.length) {
   try {
     admin.initializeApp({
-      //credential: admin.credential.cert(serviceAccount),
+      credential: admin.credential.cert(
+        JSON.parse(JSON.stringify(serviceAccount))
+      ),
     });
   } catch (err) {
     console.log("Firebase admin initialization error", err);
@@ -50,4 +53,5 @@ export {
   doc,
   fbStorage,
   getDoc,
+  getDocs,
 };

@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 
 export default function Auth() {
   const { query } = useRouter();
+  const { isMobile } = useUserDevice();
   const [isLoginPage, setIsLoginPage] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -35,9 +36,7 @@ export default function Auth() {
       }
     }
   }, [query]);
-  //const isMobile = useIsMobile();
-  const { isMobile } = useUserDevice();
-  console.log(isMobile);
+
   return (
     <>
       <Head>
@@ -74,7 +73,7 @@ export default function Auth() {
                 <div className="mt-24 flex flex-col items-center justify-start m-auto">
                   <SignupForm error={error} setError={setError} />
                   {isLoginPage ? (
-                    <span className="mt-12">
+                    <span className="mt-12 bg-transparent">
                       Don’t have an account?&nbsp;
                       <span className="text-pp-link underline">
                         <Link href="/auth?redirect=signup">Sign up</Link>
@@ -82,7 +81,7 @@ export default function Auth() {
                       &nbsp;for free!
                     </span>
                   ) : (
-                    <span className="mt-12">
+                    <span className="mt-12 bg-transparent">
                       Do you have an account?&nbsp;
                       <span className="text-pp-link underline">
                         <Link href="/auth?redirect=signin">Sign in</Link>

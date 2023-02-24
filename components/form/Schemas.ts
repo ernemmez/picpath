@@ -13,10 +13,10 @@ export const SignupSchema = yup.object().shape({
     .test(
       "usernameAvaibility",
       "This username has already been taken",
-      async (usernameVal): any => {
-        const userExists = await isAvailableUsername(usernameVal);
-
-        return userExists;
+      (usernameVal) => {
+        return isAvailableUsername(usernameVal).then(
+          (available: boolean) => available
+        );
       }
     ),
   email: yup.string().email().required("Please enter your email"),

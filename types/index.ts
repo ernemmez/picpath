@@ -9,7 +9,7 @@ interface ISignupCredential extends ILoginCredential {
 
 interface IAuthBanner {
   isLogin: boolean;
-  setIsLogin: (args: boolean) => boolean;
+  setIsLogin: (arg: boolean) => void;
   isMobile?: boolean;
 }
 

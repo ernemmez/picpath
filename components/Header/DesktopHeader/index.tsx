@@ -8,8 +8,6 @@ import UserArea from "../UserArea";
 
 const DesktopHeader: FC = () => {
     const { data } = useSession();
-
-    console.log(data);
     return (
         <div className="w-full border h-[59px] flex justify-between items-center px-9">
             <div className="w-5/12 flex justify-between items-center">

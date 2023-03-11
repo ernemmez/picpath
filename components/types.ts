@@ -18,3 +18,32 @@ export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
   rippleEffect?: boolean;
 }
+
+export interface PPMapTypes {
+  searchResults: [
+    {
+      title: string;
+      desc: string;
+      lat: number;
+      long: number;
+    },
+    {
+      title: string;
+      desc: string;
+      lat: number;
+      long: number;
+    },
+    {
+      title: string;
+      desc: string;
+      lat: number;
+      long: number;
+    },
+    {
+      title: string;
+      desc: string;
+      lat: number;
+      long: number;
+    }
+  ];
+}

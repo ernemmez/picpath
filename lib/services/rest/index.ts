@@ -23,3 +23,9 @@ export const signupReq = async (credentials: ISignupCredential) => {
 
   return result;
 };
+
+export const search = async () => {
+  const result = await NextAPI.get("search");
+
+  return await result;
+};

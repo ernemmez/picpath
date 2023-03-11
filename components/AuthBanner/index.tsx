@@ -13,6 +13,7 @@ export const AuthBanner: FC<IAuthBanner> = ({
   setIsLogin,
   isMobile,
 }) => {
+
   return isMobile ? (
     <div
       className="w-full h-[110px] border-0 flex justify-start items-center"

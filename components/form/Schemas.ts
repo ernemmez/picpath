@@ -1,15 +1,22 @@
+import isAvailableUsername from "lib/utils/checkUsernameAvailability";
 import * as yup from "yup";
 
 export const SignupSchema = yup.object().shape({
   username: yup
     .string()
     .required("Please enter a username")
+    .lowercase()
+    .matches(
+      /^[a-zA-Z0-9._]+$/,
+      "Your username can only contain letters, numbers and underscores. Cannot be longer than 15 characters"
+    )
     .test(
       "usernameAvaibility",
       "This username has already been taken",
-      function (username) {
-        const isAvailable = true;
-        return isAvailable
+      (usernameVal) => {
+        return isAvailableUsername(usernameVal).then(
+          (available: boolean) => available
+        );
       }
     ),
   email: yup.string().email().required("Please enter your email"),

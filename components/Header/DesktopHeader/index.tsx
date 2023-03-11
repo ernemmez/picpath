@@ -1,4 +1,5 @@
 import Search from "components/Search";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import CreateIcon from "public/icons/create-icon.svg";
 import ExploreIcon from "public/icons/explore-icon.svg";
@@ -6,7 +7,9 @@ import type { FC } from "react";
 import UserArea from "../UserArea";
 
 const DesktopHeader: FC = () => {
+    const { data } = useSession();
 
+    console.log(data);
     return (
         <div className="w-full border h-[59px] flex justify-between items-center px-9">
             <div className="w-5/12 flex justify-between items-center">
@@ -32,7 +35,7 @@ const DesktopHeader: FC = () => {
                     className="cursor-pointer"
                 />
 
-                <UserArea />
+                <UserArea user={{ username: data?.user?.username }} />
             </div>
         </div>
     )

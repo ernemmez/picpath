@@ -5,9 +5,8 @@ import type { FC } from "react";
 interface IUserArea {
     user: {
         username: string;
-        profileUrl: string;
-        avatarUrl: string;
-        darkMode: boolean;
+        avatarUrl?: string;
+        darkMode?: boolean;
     }
 }
 

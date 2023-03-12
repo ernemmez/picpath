@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CreateIcon from "public/icons/create-icon.svg";
 import ExploreIcon from "public/icons/explore-icon.svg";
 import HomepageIcon from "public/icons/mobile-homepage.svg";
@@ -13,11 +14,12 @@ const MobileNavbar: FC = () => {
                 onClick={() => alert('route homepage')}
                 className="cursor-pointer"
             />
-            <ExploreIcon
-                width="34px"
-                onClick={() => alert('route explore page')}
-                className="cursor-pointer"
-            />
+            <Link href="/explore">
+                <ExploreIcon
+                    width="38px"
+                    className="cursor-pointer"
+                />
+            </Link>
             <CreateIcon
                 width="34px"
                 onClick={() => alert('add point and share photo || share photo in any point')}

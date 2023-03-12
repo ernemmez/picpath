@@ -1,6 +1,7 @@
 import Search from "components/Search";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import CreateIcon from "public/icons/create-icon.svg";
 import ExploreIcon from "public/icons/explore-icon.svg";
 import type { FC } from "react";
@@ -27,12 +28,12 @@ const DesktopHeader: FC = () => {
                     onClick={() => alert('add point and share photo || share photo in any point')}
                     className="cursor-pointer"
                 />
-                <ExploreIcon
-                    width="38px"
-                    onClick={() => alert('explore')}
-                    className="cursor-pointer"
-                />
-
+                <Link href="/explore">
+                    <ExploreIcon
+                        width="38px"
+                        className="cursor-pointer"
+                    />
+                </Link>
                 <UserArea user={{ username: data?.user?.username }} />
             </div>
         </div>

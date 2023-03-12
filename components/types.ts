@@ -20,30 +20,5 @@ export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export interface PPMapTypes {
-  searchResults: [
-    {
-      title: string;
-      desc: string;
-      lat: number;
-      long: number;
-    },
-    {
-      title: string;
-      desc: string;
-      lat: number;
-      long: number;
-    },
-    {
-      title: string;
-      desc: string;
-      lat: number;
-      long: number;
-    },
-    {
-      title: string;
-      desc: string;
-      lat: number;
-      long: number;
-    }
-  ];
+  searchResults: any;
 }

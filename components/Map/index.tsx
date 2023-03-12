@@ -1,23 +1,25 @@
 import { PPMapTypes } from "components/types";
 import { getCenter } from "geolib";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import MarkerIcon from "public/icons/marker-icon.svg";
 import { FC, useState } from "react";
 import MapGl, { Marker } from 'react-map-gl';
 
 const PpMap: FC<PPMapTypes> = ({ searchResults }) => {
-    const coordinates = searchResults.map(result => ({ // searchResult ile gelen
-        latitude: result.lat,
-        longitude: result.long
+    const coordinates = searchResults.map((result: any) => ({ // searchResult ile gelen
+        latitude: result?.lat,
+        longitude: result?.long
     }))
     const center = getCenter(coordinates); // searchResult ile gelen konumların merkezinin lat - long'u
-
     const [viewport, setViewport] = useState({ // initial viewport İstanbul
         bearing: 0,
-        //latitude: center?.latitude || 41.0,
-        //longitude: center?.longitude || 28.9,
+        //latitude: center.latitude || 41.0,
+        //longitude: center.longitude || 28.9,
         pitch: 0,
     });
+    const [selectedLocation, setSelectedLocation] = useState<any>(null);
 
-    console.log('eren coordinates -->', center);
+    //console.log('eren coordinates -->', center);
 
     return (
         <div id="picpathMap" className="border w-full h-[95%] overflow-hidden">
@@ -34,9 +36,16 @@ const PpMap: FC<PPMapTypes> = ({ searchResults }) => {
                 minZoom={1.9321973857206018}
                 {...viewport}
             >
-                {searchResults.map(result => (
-                    <div key={result.lat} className="bg-pp-secondary-green">
-                        <Marker longitude={result.lat} latitude={result.long} color="red">🎯</Marker>
+                {searchResults.map((result: any) => (
+                    <div key={result.lat} className="relative">
+                        <Marker longitude={result.lat} latitude={result.long} color="red" onClick={(e) => setSelectedLocation(result)}>
+                            {selectedLocation && selectedLocation?.title === result.title && (
+                                <div className="bg-green-500 w-[250px] p-4 rounded absolute top-[-24px] left-11 z-[100]">
+                                    {JSON.stringify(selectedLocation)}
+                                </div>
+                            )}
+                            <MarkerIcon width="32px" height="32px" className="cursor-pointer animate-bounce" />
+                        </Marker>
                     </div>
                 ))}
             </MapGl>

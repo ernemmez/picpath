@@ -9,11 +9,12 @@ const MobileNavbar: FC = () => {
 
     return (
         <div className="border max-h-[100px] w-full absolute bottom-0 flex justify-around items-center px-[60px] py-[12px]">
-            <HomepageIcon
-                width="34px"
-                onClick={() => alert('route homepage')}
-                className="cursor-pointer"
-            />
+            <Link href="/">
+                <HomepageIcon
+                    width="34px"
+                    className="cursor-pointer"
+                />
+            </Link>
             <Link href="/explore">
                 <ExploreIcon
                     width="38px"

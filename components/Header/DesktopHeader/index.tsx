@@ -12,12 +12,14 @@ const DesktopHeader: FC = () => {
     return (
         <div className="w-full border h-[59px] flex justify-between items-center px-9">
             <div className="w-5/12 flex justify-between items-center">
-                <Image
-                    src="/icons/favicons/180x180.png"
-                    width={40}
-                    height={40}
-                    alt="Picpath"
-                />
+                <Link href="/">
+                    <Image
+                        src="/icons/favicons/180x180.png"
+                        width={40}
+                        height={40}
+                        alt="Picpath"
+                    />
+                </Link>
                 <div className="w-[55%]">
                     <Search />
                 </div>

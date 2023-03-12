@@ -24,7 +24,7 @@ const Explore: NextPage<IExplore> = ({ searchResult }) => {
             <Layout>
                 <Header isMobile={isMobile} />
                 <main className="w-full h-screen">
-                    <PpMap searchResults={searchResult} />
+                    <PpMap resultData={searchResult} />
                 </main>
             </Layout>
         </>

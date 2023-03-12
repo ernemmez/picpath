@@ -20,5 +20,5 @@ export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export interface PPMapTypes {
-  searchResults: any;
+  resultData?: any;
 }

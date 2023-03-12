@@ -18,6 +18,17 @@ const nextConfig = {
     ];
   },
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+        port: "",
+        pathname: "**",
+      },
+    ],
+  },
+
   webpack(config, { defaultLoaders }) {
     const resolvedBaseUrl = path.resolve(config.context, "../../");
 

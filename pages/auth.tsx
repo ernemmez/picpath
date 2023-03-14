@@ -4,6 +4,7 @@ import { AuthBanner } from "components/AuthBanner";
 import SigninForm from "components/form/signin-form";
 import SignupForm from "components/form/signup";
 import { useUserDevice } from "context/UserDeviceContext";
+import useMatchMedia from "hooks/useMatchMedia";
 import Layout from "layout";
 import { showToast } from "lib/utils/alertHandler";
 import { setFirebaseMessages } from "lib/utils/showFirebaseError";
@@ -18,6 +19,9 @@ export default function Auth() {
   const { isMobile } = useUserDevice();
   const [isLoginPage, setIsLoginPage] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+
+  const MatchMedia = useMatchMedia();
+  console.log("useMatchMedia2:", MatchMedia);
 
   useEffect(() => {
     // query param da redirect = x gelirse

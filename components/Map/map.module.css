@@ -1,0 +1,23 @@
+.ConfirmButton {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  top: 20px;
+}
+
+.ConfirmButton:hover {
+  background-color: #f7fafa;
+}
+
+.ConfirmButton:focus {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  outline: 0;
+}

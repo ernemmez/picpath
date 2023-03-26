@@ -2,7 +2,7 @@ import { Button } from "@material-tailwind/react";
 import Header from "components/Header";
 import { useUserDevice } from "context/UserDeviceContext";
 import Layout from "layout";
-import type { NextPage } from 'next';
+import type { NextPage } from "next";
 import { signOut, useSession } from "next-auth/react";
 import { useUserAgent } from "next-useragent";
 import Head from "next/head";
@@ -21,13 +21,15 @@ const Home: NextPage = () => {
         <main>
           <Header isMobile={isMobile} />
           <section className="w-1/2 m-auto flex justify-around items-center mt-10">
-            <Button onClick={() => signOut()} variant="outlined">Sign out</Button>
+            <Button onClick={() => signOut()} variant="outlined">
+              Sign out
+            </Button>
           </section>
         </main>
       </Layout>
     </>
   );
-}
+};
 
 export async function getServerSideProps(context: any) {
   return {

@@ -1,6 +1,6 @@
 import { Button } from "@material-tailwind/react";
 import Textarea from "components/Textarea";
-import Cross from "public/icons/Cross.svg";
+import Cross from "public/icons/cross.svg";
 import { Controller } from "react-hook-form";
 
 function ThirdStep() {
